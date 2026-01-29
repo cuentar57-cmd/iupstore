@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IUP STORE</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  color:white;
+  background:#000;
+}
+
+
+
+/* HEADER */
+header{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:15px;
+  padding:25px;
+}
+header img{width:220px}
+.texto-header{font-size:24px;font-weight:bold}
+.sub-ciudad{font-size:14px;opacity:.8}
+
+/* MODELOS */
+.stock{text-align:center}
+.modelos{
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+  padding:10px;
+  align-items:center;
+}
+.modelo{text-align:center;cursor:pointer}
+.modelo img{
+  width:70px;height:70px;
+  object-fit:contain;
+  border-radius:50%;
+  border:2px solid #444;
+  background:white;
+  padding:5px;
+}
+.modelo.activo img{
+  animation:resaltar 1.5s infinite;
+  border-color:#007aff;
+}
+
+@keyframes resaltar{
+  0%{box-shadow:0 0 5px #007aff}
+  50%{box-shadow:0 0 18px #007aff}
+  100%{box-shadow:0 0 5px #007aff}
+}
+
+.modelo span{display:block;font-size:11px;margin-top:5px;font-weight:bold}
+.separador{width:2px;height:70px;background:white;opacity:.3}
+.ver-todos{
+  margin:10px;
+  padding:8px 15px;
+  border-radius:20px;
+  border:none;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* PRECIOS */
+.precio-ars{
+  color:#fff;        /* BLANCO (no negro) */
+  font-size:18px;
+  font-weight:bold;
+}
+
+.precio-usd{
+  color:#00c853;     /* Verde USD */
+  font-size:14px;
+  font-weight:bold;
+}
+header{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:25px;
+  position: relative;
+}
+
+.logo-header img{
+  width:180px;
+  animation: logoAnim 2s infinite alternate;
+}
+
+.header-iphone img{
+  width:120px;
+  animation: iphoneAnim 1.5s infinite alternate;
+}
+
+.header-iphone.left img{
+  transform-origin: right center;
+}
+
+.header-iphone.right img{
+  transform-origin: left center;
+}
+
+@keyframes logoAnim{
+  0%{ transform: scale(1) rotate(0deg);}
+  50%{ transform: scale(1.1) rotate(-5deg);}
+  100%{ transform: scale(1) rotate(0deg);}
+}
+
+@keyframes iphoneAnim{
+  0%{ transform: translateY(0) rotate(0deg);}
+  50%{ transform: translateY(-10px) rotate(5deg);}
+  100%{ transform: translateY(0) rotate(0deg);}
+}
+header img {
+  width: 220px;
+  animation: rebotar 2s infinite;
+}
+
+@keyframes rebotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+/* PRODUCTOS */
+section{padding:15px}
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:15px;
+  max-width:600px;
+  margin:auto;
+
+}
+.card{
+  border:1px solid #333;
+  border-radius:18px;
+  padding:15px;
+  background:#0b0b0b;
+}
+.titulo{font-weight:bold;font-size:17px}
+.tag{padding:3px 8px;border-radius:8px;font-size:12px;margin-left:6px}
+.usado-tag{background:#222;color:#ccc}
+.sellado-tag{background:#39ff14;color:black}
+.bateria{
+  margin-top:6px;
+  display:inline-block;
+  background:#000;
+  border:1px solid #39ff14;
+  padding:4px 8px;
+  border-radius:8px;
+  font-size:12px;
+}
+.precio{font-size:18px;font-weight:bold;margin:8px 0}
+.ver-cuotas{
+  background:#222;
+  border:1px solid #555;
+  color:white;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.boton{
+  display:block;
+  margin-top:10px;
+  padding:10px;
+  background:white;
+  color:black;
+  text-align:center;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+.sellado{display:none}
+
+/* MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+.modal-content{
+  background:#111;
+  padding:20px;
+  border-radius:15px;
+  text-align:center;
+}
+.cuota{
+  background:#39ff14;
+  color:black;
+  padding:6px;
+  border-radius:8px;
+  margin:6px 0;
+}
+.card {
+  border: 1px solid #333;
+  border-radius: 18px;
+  padding: 15px;
+  background: #0b0b0b;
+  /* Nuevo efecto */
+  box-shadow: 0 0 5px rgba(255,255,255,0.2);
+  animation: cardGlow 2s infinite alternate;
+}
+
+@keyframes cardGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255,255,255,0.5);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255,255,255,0.2);
+  }
+} /* <<== agregá esta llave de cierre */
+
+.stock-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra todo horizontalmente */
+  margin-bottom: 20px;
+}
+
+.stock {
+  display: flex;
+  justify-content: center; /* centra dólar + botón */
+  align-items: center;
+  gap: 20px; /* espacio entre dólar y botón */
+  width: 100%;
+  max-width: 600px; /* opcional: no se expanda demasiado en pantallas grandes */
+}
+
+h2 {
+  margin-top: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+/* Botón menú y desplegable */
+.menu-btn {
+  background:#111;
+  color:white;
+  border:none;
+  padding:6px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.menu-dropdown {
+  display:none;
+  position:absolute;
+  top:110%;
+  right:0;
+  background:#111;
+  border:1px solid #39ff14;
+  border-radius:8px;
+  padding:10px;
+  flex-direction:column;
+  gap:8px;
+  min-width:160px;
+  z-index:1000;
+}
+
+.menu-dropdown a,
+.menu-dropdown span {
+  color:white;
+  text-decoration:none;
+  font-size:14px;
+}
+
+.menu-dropdown a:hover {
+  color:#39ff14;
+}
+
+/* Mostrar menú al hacer clic */
+.menu-btn-container.active .menu-dropdown {
+  display:flex;
+  flex-direction:column;
+}
+.detalle {
+  font-size: 13px;
+  color: #aaa;
+  margin: 6px 0 4px 0;
+  background: #111;
+  padding: 4px 8px;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.ps5-tag {
+  background: #0055ff;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-left: 6px;
+
+}
+
+.dolar-hoy{
+  display:inline-block;
+  margin-bottom:12px;
+  padding:8px 18px;
+  border-radius:999px;
+  background:#111;
+  border:1px solid #39ff14;
+  color:#39ff14;
+  font-size:15px;
+  font-weight:700;
+  animation: glowDolar 1.5s infinite alternate;
+  box-shadow: 0 0 6px #39ff14;
+}
+
+@keyframes glowDolar{
+  0% { box-shadow: 0 0 6px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; }
+  50% { box-shadow: 0 0 12px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14; }
+  100% { box-shadow: 0 0 6px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14; }
+}
+
+.dolar-container {
+  display: flex;
+  justify-content: center; /* Centra todo horizontalmente */
+  align-items: center;     /* Centra verticalmente */
+  gap: 15px;               /* Espacio entre dólar y botón */
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.menu-btn-container {
+  position: relative;
+}
+
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER ANIMADO -->
+<header>
+  <div class="header-iphone left">
+    <img src="https://i.postimg.cc/fyHJGBhW/IMG-1360.png" alt="iPhone Izquierdo">
+  </div>
+
+  <div class="logo-header">
+    <img src="https://i.postimg.cc/m2wFq3Bv/Gemini-Generated-Image-85x1na85x1na85x1-(1).png" alt="Logo">
+  </div>
+
+  <div class="header-iphone right">
+    <img src="https://i.postimg.cc/L6TTXpm8/IMG-1359.png" alt="iPhone Derecho">
+  </div>
+</header>
+
+<div class="stock-wrapper">
+  <div class="stock">
+    <div class="dolar-hoy">
+      💵 Dólar hoy: <strong id="valorDolar"></strong>
+    </div>
+
+    <div class="menu-btn-container">
+      <button class="menu-btn">☰</button>
+      <div class="menu-dropdown">
+        <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">Instagram</a>
+        <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">Ubicación</a>
+        <span>✅ Se acepta Plan Canje</span>
+      </div>
+    </div>
+  </div>
+
+  <h2>STOCK DISPONIBLE</h2>
+</div>
+
+  <!-- ICONOS / FILTROS -->
+ 
+  <div class="modelos">
+    <div class="modelo" onclick="mostrarSellados(this)">
+      <img src="https://i.postimg.cc/PqzbwZHY/i_Phone_Device_List_Smart_Website_1280_x_853_i_Phone_17_Pro_1_c26420e4fa.webp">
+      <span>Sellados</span>
+    </div>
+
+   
+    <div class="separador"></div>
+
+    <div class="modelo" onclick="filtrarModelo('11',this)">
+      <img src="https://i.postimg.cc/YCzJMVs6/IMG-1356.webp">
+      <span>iPhone 11</span>
+    </div>
+
+   
+    <div class="separador"></div>
+
+    <div class="modelo" onclick="filtrarModelo('13',this)">
+      <img src="https://i.postimg.cc/90LZXJJ8/iphone_13_PNG27.png">
+      <span>iPhone 13</span>
+    </div>
+
+    <div class="separador"></div>
+
+    <div class="modelo" onclick="filtrarModelo('13-pro',this)">
+      <img src="https://i.postimg.cc/2ynYhx9D/Apple-i-Phone-13-Pro-Graphite-1.webp">
+      <span>iPhone 13 Pro</span>
+    </div>
+
+
+    <div class="separador"></div>
+
+    <div class="modelo" onclick="filtrarModelo('14-pro',this)">
+      <img src="https://i.postimg.cc/hvBRVxpn/fee4af78-110f-467c-86d2-6d6f27ba1afe-8422413b3b9eb231cea3f43d11a5a5c4.webp">
+      <span>iPhone 14 Pro</span>
+    </div>
+
+   
+  <!-- BOTON VER TODOS -->
+  <div style="display:flex; justify-content:center; margin:15px 0;">
+    <button class="ver-todos" onclick="verTodos()">
+      Ver todos
+    </button>
+  </div>
+</div>
+</div>
+<!-- ================= IPHONES USADOS ================= -->
+
+<!-- iPhone 11 -->
+<div class="card usado" data-modelo="11" data-usd="231">
+  <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 231</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="11" data-usd="231">
+  <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Blanco</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 231</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="11" data-usd="231">
+  <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Verde</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 231</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="11" data-usd="231">
+  <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Amarillo</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 231</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="11" data-usd="231">
+  <div class="titulo">iPhone 11 64GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Lila</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 231</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 13 -->
+<div class="card usado" data-modelo="13" data-usd="350">
+  <div class="titulo">iPhone 13 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 350</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="13" data-usd="350">
+  <div class="titulo">iPhone 13 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Blanco</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 350</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="13" data-usd="350">
+  <div class="titulo">iPhone 13 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Azul</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 350</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="13" data-usd="350">
+  <div class="titulo">iPhone 13 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Rosa</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 350</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<div class="card usado" data-modelo="13" data-usd="350">
+  <div class="titulo">iPhone 13 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Verde</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 350</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 13 Pro -->
+<div class="card usado" data-modelo="13-pro" data-usd="500">
+  <div class="titulo">iPhone 13 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Grafito</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 500</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 13 Pro -->
+<div class="card usado" data-modelo="13-pro" data-usd="500">
+  <div class="titulo">iPhone 13 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Grafito</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 500</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 13 Pro -->
+<div class="card usado" data-modelo="13-pro" data-usd="500">
+  <div class="titulo">iPhone 13 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Grafito</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 500</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 13 Pro -->
+<div class="card usado" data-modelo="13-pro" data-usd="500">
+  <div class="titulo">iPhone 13 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Grafito</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 500</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 13 Pro -->
+<div class="card usado" data-modelo="13-pro" data-usd="500">
+  <div class="titulo">iPhone 13 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Grafito</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 500</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 14 Pro -->
+<div class="card usado" data-modelo="14-pro" data-usd="530">
+  <div class="titulo">iPhone 14 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro Espacial</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 530</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 14 Pro -->
+<div class="card usado" data-modelo="14-pro" data-usd="530">
+  <div class="titulo">iPhone 14 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro Espacial</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 530</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 14 Pro -->
+<div class="card usado" data-modelo="14-pro" data-usd="530">
+  <div class="titulo">iPhone 14 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro Espacial</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 530</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 14 Pro -->
+<div class="card usado" data-modelo="14-pro" data-usd="530">
+  <div class="titulo">iPhone 14 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro Espacial</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 530</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+<!-- iPhone 14 Pro -->
+<div class="card usado" data-modelo="14-pro" data-usd="530">
+  <div class="titulo">iPhone 14 Pro 128GB <span class="tag usado-tag">Usado</span></div>
+  <div class="bateria">🔋 100%</div>
+  <div class="detalle">Color Negro Espacial</div>
+  <div class="precio-ars"></div>
+  <div class="precio-usd">USD 530</div>
+  <button class="boton" onclick="abrirWhatsApp()">Consultar</button>
+</div>
+
+
+	
+</div>
+</section>
+
+<div class="modal" id="modal">
+  <div class="modal-content" id="modalContent"></div>
+</div>
+<div class="modal" id="modalWhatsapp">
+  <div class="modal-content">
+    <h3>📲 Elegí un WhatsApp</h3>
+
+    <a class="boton" target="_blank"
+       href="https://wa.me/5493424478490">
+       📞 Vendedor
+    </a>
+
+
+    <button class="ver-cuotas" onclick="cerrarWhatsapp()">Cerrar</button>
+  </div>
+</div>
+
+<script>
+const usados = document.querySelectorAll(".usado");
+const sellados = document.querySelectorAll(".sellado");
+const zonagamer = document.querySelectorAll('[data-modelo="zonagamer"]');
+const ps5 = document.querySelectorAll(".ps5");
+const smart = document.querySelectorAll(".smart");
+const macbooks = document.querySelectorAll(".macbook");
+const ipad = document.querySelectorAll(".ipad");
+const airpods = document.querySelectorAll(".airpods");
+const cargadores = document.querySelectorAll(".cargadores");
+const applepencil = document.querySelectorAll(".applepencil");
+const applewatch = document.querySelectorAll(".applewatch");
+const airtag = document.querySelectorAll(".airtag");
+const parlantejbl = document.querySelectorAll(".parlantejbl");
+const modelos = document.querySelectorAll(".modelo");
+
+const VALOR_DOLAR = 1520;
+document.getElementById("valorDolar").textContent = `$${VALOR_DOLAR.toLocaleString("es-AR")}`;
+
+/* ================= PRECIOS ================= */
+function actualizarPrecios() {
+  document.querySelectorAll(".card[data-usd]").forEach(card => {
+    const usd = Number(card.dataset.usd);
+    const ars = usd * VALOR_DOLAR;
+    const precioARS = card.querySelector(".precio-ars");
+    if(precioARS) precioARS.textContent = `$${ars.toLocaleString("es-AR")}`;
+  });
+}
+actualizarPrecios();
+
+/* ================= MENÚ ================= */
+const menuBtnContainer = document.querySelector(".menu-btn-container");
+const menuBtn = document.querySelector(".menu-btn");
+
+menuBtn.addEventListener("click", () => {
+  menuBtnContainer.classList.toggle("active");
+});
+
+document.addEventListener("click", e => {
+  if(!menuBtnContainer.contains(e.target)) menuBtnContainer.classList.remove("active");
+});
+
+/* ================= FILTROS ================= */
+function ocultarTodo() {
+  document.querySelectorAll(".card").forEach(card => card.style.display = "none");
+}
+
+function activar(el) {
+  modelos.forEach(m => m.classList.remove("activo"));
+  if(el) el.classList.add("activo");
+}
+
+function verTodos() {
+  activar(null);
+  document.querySelectorAll(".card").forEach(card => card.style.display = "block");
+}
+
+function mostrarSellados(el) { activar(el); ocultarTodo(); sellados.forEach(i => i.style.display = "block"); }
+function mostrarPS5(el) { activar(el); ocultarTodo(); ps5.forEach(i => i.style.display = "block"); }
+function mostrarSmart(el) { activar(el); ocultarTodo(); smart.forEach(i => i.style.display = "block"); }
+function mostrarZonaGamer(el) { activar(el); ocultarTodo(); zonagamer.forEach(i => i.style.display = "block"); }
+function mostrarMacbook(el) { activar(el); ocultarTodo(); macbooks.forEach(i => i.style.display = "block"); }
+function mostrarIpad(el) { activar(el); ocultarTodo(); ipad.forEach(i => i.style.display = "block"); }
+function mostrarAirPods(el) { activar(el); ocultarTodo(); airpods.forEach(i => i.style.display = "block"); }
+function mostrarCargadores(el) { activar(el); ocultarTodo(); cargadores.forEach(i => i.style.display = "block"); }
+function mostrarApplePencil(el) { activar(el); ocultarTodo(); applepencil.forEach(i => i.style.display = "block"); }
+function mostrarAppleWatch(el) { activar(el); ocultarTodo(); applewatch.forEach(i => i.style.display = "block"); }
+function mostrarAirTag(el) { activar(el); ocultarTodo(); airtag.forEach(i => i.style.display = "block"); }
+function mostrarParlanteJBL(el) { activar(el); ocultarTodo(); parlantejbl.forEach(i => i.style.display = "block"); }
+
+function filtrarModelo(m, el) {
+  activar(el);
+  ocultarTodo();
+  usados.forEach(i => {
+    i.style.display = i.dataset.modelo.toLowerCase() === m.toLowerCase() ? "block" : "none";
+  });
+}
+
+/* ================= MODAL CUOTAS ================= */
+function abrirCuotas(btn) {
+  const card = btn.closest(".card");
+  if(!card) return;
+
+  let precioARS = card.dataset.usd ? Number(card.dataset.usd) * VALOR_DOLAR : 0;
+  if(!precioARS) return alert("Precio inválido");
+
+  const cuota3 = Math.round(precioARS * 1.25 / 3);
+  const cuota6 = Math.round(precioARS * 1.35 / 6);
+
+  const modal = document.getElementById("modal");
+  const contenido = document.getElementById("modalContent");
+
+  contenido.innerHTML = `
+    <h3>Cuotas</h3>
+    <p>3x $${cuota3.toLocaleString("es-AR")}</p>
+    <p>6x $${cuota6.toLocaleString("es-AR")}</p>
+    <button onclick="cerrar()">Cerrar</button>
+  `;
+  modal.style.display = "flex";
+}
+
+function cerrar() {
+  document.getElementById("modal").style.display = "none";
+}
+
+/* ================= MODAL WHATSAPP ================= */
+function abrirWhatsApp() {
+  document.getElementById("modalWhatsapp").style.display = "flex";
+}
+
+function cerrarWhatsapp() {
+  document.getElementById("modalWhatsapp").style.display = "none";
+}
+
+/* ================= INIT ================= */
+verTodos();
+</script>
+	
+</body>
+</html>
