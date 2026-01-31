@@ -258,36 +258,40 @@ h2 {
   font-size:16px;
 }
 
-.menu-dropdown {
-  display:none;
-  position:absolute;
-  top:110%;
-  right:0;
-  background:#111;
-  border:1px solid #39ff14;
-  border-radius:8px;
-  padding:10px;
-  flex-direction:column;
-  gap:8px;
-  min-width:160px;
-  z-index:1000;
+.menu-lateral{
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 320px;
+  height: 100vh;
+  background: #000;
+  color: white;
+  z-index: 3000;
+  padding: 25px;
+  transition: right .35s ease;
 }
 
-.menu-dropdown a,
-.menu-dropdown span {
-  color:white;
-  text-decoration:none;
-  font-size:14px;
+.menu-lateral.activo{
+  right: 0;
 }
 
-.menu-dropdown a:hover {
+.menu-lateral a{
   color:#39ff14;
+  text-decoration:none;
 }
 
-/* Mostrar menú al hacer clic */
-.menu-btn-container.active .menu-dropdown {
-  display:flex;
-  flex-direction:column;
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 2500;
+  display: none;
+}
+
+.overlay.activo{
+  display: block;
+}
 }
 .detalle {
   font-size: 13px;
@@ -371,15 +375,27 @@ h2 {
       💵 Dólar hoy: <strong id="valorDolar"></strong>
     </div>
 
-    <div class="menu-btn-container">
-      <button class="menu-btn">☰</button>
-      <div class="menu-dropdown">
-        <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">Instagram</a>
-        <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">Ubicación</a>
-        <span>✅ Se acepta Plan Canje</span>
-      </div>
-    </div>
-  </div>
+    <div class="overlay" id="overlay" onclick="cerrarMenu()"></div>
+
+<div class="menu-lateral" id="menuLateral">
+  <h3>SERVICIOS</h3>
+  ♻️ Plan canje (tomamos tu usado)<br><br>
+  📦 Envíos a todo el país<br><br>
+
+  <h3>CONFIANZA</h3>
+  ✅ Equipos verificados<br><br>
+  🛡️ Garantía real de 30 días<br><br>
+
+  <h3>UBICACIÓN</h3>
+  📍 <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">
+    Fray Quirico Porreca 740 – Río Cuarto
+  </a><br><br>
+
+  <h3>SEGUINOS</h3>
+  📸 <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">
+    Instagram
+  </a>
+</div>
 
   <h2>STOCK DISPONIBLE</h2>
 </div>
@@ -824,17 +840,15 @@ function actualizarPrecios() {
 }
 actualizarPrecios();
 
-/* ================= MENÚ ================= */
-const menuBtnContainer = document.querySelector(".menu-btn-container");
-const menuBtn = document.querySelector(".menu-btn");
+function abrirMenu(){
+  document.getElementById("menuLateral").classList.add("activo");
+  document.getElementById("overlay").classList.add("activo");
+}
 
-menuBtn.addEventListener("click", () => {
-  menuBtnContainer.classList.toggle("active");
-});
-
-document.addEventListener("click", e => {
-  if(!menuBtnContainer.contains(e.target)) menuBtnContainer.classList.remove("active");
-});
+function cerrarMenu(){
+  document.getElementById("menuLateral").classList.remove("activo");
+  document.getElementById("overlay").classList.remove("activo");
+}
 
 /* ================= FILTROS ================= */
 function ocultarTodo() {
