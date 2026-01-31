@@ -77,9 +77,33 @@ header img{width:220px}
 }
 
 .precio-usd{
-  color:#007aff;     /* Verde USD */
+  position: relative;
+  overflow: hidden;
+  color:#007aff;      /* 🔵 Azul */
   font-size:14px;
   font-weight:bold;
+}
+
+/* BRILLO LATERAL ANIMADO */
+.precio-usd::after{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-40%;
+  width:40%;
+  height:140%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0,122,255,0.9),
+    transparent
+  );
+  animation: brilloUSD 2.2s infinite;
+}
+
+@keyframes brilloUSD{
+  0%{ left:-40%; }
+  100%{ left:120%; }
 }
 header{
   display:flex;
