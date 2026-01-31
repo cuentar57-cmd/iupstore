@@ -273,21 +273,55 @@ h2 {
   z-index:1000;
 }
 
-.menu-dropdown a,
-.menu-dropdown span {
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  display:none;
+  z-index:9999;
+}
+
+.menu-panel{
+  position:absolute;
+  right:0;
+  top:0;
+  height:100%;
+  width:80%;
+  max-width:320px;
+  background:#000;
+  padding:25px;
+  animation: slideIn .3s ease forwards;
+}
+
+@keyframes slideIn{
+  from{ transform:translateX(100%); }
+  to{ transform:translateX(0); }
+}
+
+.close-menu{
+  position:absolute;
+  top:15px;
+  right:15px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.menu-panel h3{
+  margin-top:25px;
+  margin-bottom:10px;
+  font-size:18px;
+}
+
+.menu-panel p,
+.menu-panel a{
+  display:block;
   color:white;
   text-decoration:none;
-  font-size:14px;
-}
-
-.menu-dropdown a:hover {
-  color:#39ff14;
-}
-
-/* Mostrar menú al hacer clic */
-.menu-btn-container.active .menu-dropdown {
-  display:flex;
-  flex-direction:column;
+  margin-bottom:12px;
+  font-size:15px;
 }
 .detalle {
   font-size: 13px;
@@ -371,15 +405,25 @@ h2 {
       💵 Dólar hoy: <strong id="valorDolar"></strong>
     </div>
 
-    <div class="menu-btn-container">
-      <button class="menu-btn">☰</button>
-      <div class="menu-dropdown">
-        <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">Instagram</a>
-        <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">Ubicación</a>
-        <span>✅ Se acepta Plan Canje</span>
-      </div>
-    </div>
+    <div class="menu-overlay" id="menuOverlay">
+  <div class="menu-panel">
+    <button class="close-menu" onclick="cerrarMenu()">✕</button>
+
+    <h3>SERVICIOS</h3>
+    <p>♻️ Plan canje disponible</p>
+    <p>📦 Envíos a todo el país</p>
+
+    <h3>UBICACIÓN</h3>
+    <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">
+      📍 Río Cuarto
+    </a>
+
+    <h3>REDES</h3>
+    <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">
+      📸 Instagram
+    </a>
   </div>
+</div>
 
   <h2>STOCK DISPONIBLE</h2>
 </div>
@@ -824,17 +868,16 @@ function actualizarPrecios() {
 }
 actualizarPrecios();
 
-/* ================= MENÚ ================= */
-const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
+const menuOverlay = document.getElementById("menuOverlay");
 
 menuBtn.addEventListener("click", () => {
-  menuBtnContainer.classList.toggle("active");
+  menuOverlay.style.display = "block";
 });
 
-document.addEventListener("click", e => {
-  if(!menuBtnContainer.contains(e.target)) menuBtnContainer.classList.remove("active");
-});
+function cerrarMenu(){
+  menuOverlay.style.display = "none";
+}
 
 /* ================= FILTROS ================= */
 function ocultarTodo() {
