@@ -10,10 +10,9 @@
 <style>
 body{
   margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
-  background:#000;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   color:white;
-  overflow-x: hidden;
+  background:#000;
 }
 
 
@@ -258,14 +257,7 @@ h2 {
   cursor:pointer;
   font-size:16px;
 }
-.modelos-sticky{
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  background: #000;
-  padding: 10px 0;
-  border-bottom: 1px solid #222;
-}
+
 .menu-dropdown {
   display:none;
   position:absolute;
@@ -281,55 +273,21 @@ h2 {
   z-index:1000;
 }
 
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:none;
-  z-index:9999;
-}
-
-.menu-panel{
-  position:absolute;
-  right:0;
-  top:0;
-  height:100%;
-  width:80%;
-  max-width:320px;
-  background:#000;
-  padding:25px;
-  animation: slideIn .3s ease forwards;
-}
-
-@keyframes slideIn{
-  from{ transform:translateX(100%); }
-  to{ transform:translateX(0); }
-}
-
-.close-menu{
-  position:absolute;
-  top:15px;
-  right:15px;
-  background:none;
-  border:none;
-  color:white;
-  font-size:22px;
-  cursor:pointer;
-}
-
-.menu-panel h3{
-  margin-top:25px;
-  margin-bottom:10px;
-  font-size:18px;
-}
-
-.menu-panel p,
-.menu-panel a{
-  display:block;
+.menu-dropdown a,
+.menu-dropdown span {
   color:white;
   text-decoration:none;
-  margin-bottom:12px;
-  font-size:15px;
+  font-size:14px;
+}
+
+.menu-dropdown a:hover {
+  color:#39ff14;
+}
+
+/* Mostrar menú al hacer clic */
+.menu-btn-container.active .menu-dropdown {
+  display:flex;
+  flex-direction:column;
 }
 .detalle {
   font-size: 13px;
@@ -413,32 +371,21 @@ h2 {
       💵 Dólar hoy: <strong id="valorDolar"></strong>
     </div>
 
-    <div class="menu-overlay" id="menuOverlay">
-  <div class="menu-panel">
-    <button class="close-menu" onclick="cerrarMenu()">✕</button>
-
-    <h3>SERVICIOS</h3>
-    <p>♻️ Plan canje disponible</p>
-    <p>📦 Envíos a todo el país</p>
-
-    <h3>UBICACIÓN</h3>
-    <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">
-      📍 Río Cuarto
-    </a>
-
-    <h3>REDES</h3>
-    <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">
-      📸 Instagram
-    </a>
+    <div class="menu-btn-container">
+      <button class="menu-btn">☰</button>
+      <div class="menu-dropdown">
+        <a href="https://www.instagram.com/iup_store_calidad/" target="_blank">Instagram</a>
+        <a href="https://maps.app.goo.gl/XqHEDacDQ8XcTTeVA" target="_blank">Ubicación</a>
+        <span>✅ Se acepta Plan Canje</span>
+      </div>
+    </div>
   </div>
-</div>
 
   <h2>STOCK DISPONIBLE</h2>
 </div>
 
   <!-- ICONOS / FILTROS -->
  
-<div class="modelos-sticky">
   <div class="modelos">
     <div class="modelo" onclick="mostrarSellados(this)">
       <img src="https://i.postimg.cc/PqzbwZHY/i_Phone_Device_List_Smart_Website_1280_x_853_i_Phone_17_Pro_1_c26420e4fa.webp">
@@ -539,7 +486,7 @@ h2 {
       <span>iPhone 17 Pro Max</span>
     </div>
 
-</div>
+	<div class="separador"></div>
    
   <!-- BOTON VER TODOS -->
   <div style="display:flex; justify-content:center; margin:15px 0;">
@@ -547,9 +494,8 @@ h2 {
       Ver todos
     </button>
   </div>
-	
-<section>
-  <div class="grid">
+</div>
+</div>
 <!-- ================= IPHONES USADOS ================= -->
 
 <!-- iPhone 11 -->
@@ -878,16 +824,17 @@ function actualizarPrecios() {
 }
 actualizarPrecios();
 
+/* ================= MENÚ ================= */
+const menuBtnContainer = document.querySelector(".menu-btn-container");
 const menuBtn = document.querySelector(".menu-btn");
-const menuOverlay = document.getElementById("menuOverlay");
 
 menuBtn.addEventListener("click", () => {
-  menuOverlay.style.display = "block";
+  menuBtnContainer.classList.toggle("active");
 });
 
-function cerrarMenu(){
-  menuOverlay.style.display = "none";
-}
+document.addEventListener("click", e => {
+  if(!menuBtnContainer.contains(e.target)) menuBtnContainer.classList.remove("active");
+});
 
 /* ================= FILTROS ================= */
 function ocultarTodo() {
